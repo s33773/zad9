@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,5 +20,31 @@ public class Main {
         for (Car car : cars) {
             System.out.println(car);
         }
+        int numbers[]=new int[10];
+        fillArray(numbers);
+        for (int num:numbers){
+            System.out.println(num+ " ");
+        }
     }
+
+    public static int readNumber() throws NegativeNumberException{
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter number: ");
+        int number = sc.nextInt();
+        if(number<0){
+            throw new NegativeNumberException("Negative numbers are not allowed");
+        }
+        return number;
+    }
+    public static void fillArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            try {
+                array[i] = readNumber();
+            }catch(NegativeNumberException e){
+                array[i] = 0;
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
 }
